@@ -1,5 +1,8 @@
-# NTUT-downloader-js
-這個是一個以Javascript重購的NTUT爬蟲, 未來會用該模板做一個NTUT api
+## Introduce
+這是一個可以抓取北科網頁的小小api, 目前還在建構中...
+
+## 使用方法
+1. 安裝
 
 ## NTUT api
 - 做一個影片串流
