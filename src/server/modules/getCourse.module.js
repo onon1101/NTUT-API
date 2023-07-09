@@ -14,6 +14,40 @@ axiosRetry(
   },
 );
 
+// class Course {
+//   constructor() {
+//     this.regexParse = /\n|\s|^ | $/g;
+//   }
+
+//   courseDetail($) {
+//     const format = (funct) => { funct.text().trim().replace(this.regexParse, ''); };
+//     return {
+//       code: format($('body > table > tbody > tr:nth-child(2) > td:nth-child(1)')),
+//       name: {
+//         zh: format($('body > table > tbody > tr:nth-child(2) > td:nth-child(2)')),
+//         en: format($('body > table > tbody > tr:nth-child(2) > td:nth-child(3)')),
+//       },
+//       description: {
+//         zh: format($('body > table > tbody > tr:nth-child(3) > td:nth-child(2)')),
+//         en: format($('body > table > tbody > tr:nth-child(3) > td:nth-child(3)')),
+//       },
+//     };
+//   }
+
+//   async couresList(url) {
+//     const getSinglePage = await singleModule.GetPage(url);
+//     const $ = cheerio.load(getSinglePage);
+
+//     // 產生一個課程的詳細資料
+//     const response = this.courseDetail($);
+
+//     if (response.name.en === 'Nil') {
+//       response.name = { zh: '', en: '' };
+//     }
+//     return response;
+//   }
+// }
+
 // 需要排除的字元
 const regexParse = /\n|\s|^ | $/g;
 
@@ -80,7 +114,7 @@ const getCourse = async (matricKey = '日間部', year = '109', semester = 2) =>
     const url = `https://aps.ntut.edu.tw/course/tw/QueryCourse.jsp?stime=101%2C102%2C103%2C104%2C122%2C105%2C106%2C107%2C108%2C109%2C110%2C111%2C112%2C113%2C201%2C202%2C203%2C204%2C222%2C205%2C206%2C207%2C208%2C209%2C210%2C211%2C212%2C213%2C301%2C302%2C303%2C304%2C322%2C305%2C306%2C307%2C308%2C309%2C310%2C311%2C312%2C313%2C401%2C402%2C403%2C404%2C422%2C405%2C406%2C407%2C408%2C409%2C410%2C411%2C412%2C413%2C501%2C502%2C503%2C504%2C522%2C505%2C506%2C507%2C508%2C509%2C510%2C511%2C512%2C513%2C601%2C602%2C603%2C604%2C622%2C605%2C606%2C607%2C608%2C609%2C610%2C611%2C612%2C613&year=${year}&matric=${encodeURI(iconv.encode(matric[matricKey], 'big5'))}&sem=${semester}&unit=**&cname=${keyword}&ccode=&tname=&D0=ON&D1=ON&D2=ON&D3=ON&D4=ON&D5=ON&D6=ON&P1=ON&P2=ON&P3=ON&P4=ON&PN=ON&P5=ON&P6=ON&P7=ON&P8=ON&P9=ON&P10=ON&P11=ON&P12=ON&P13=ON&search=%B6%7D%A9l%ACd%B8%DF`;
 
     console.log(`${new Date()} GET ${url}  start.`);
-    const schoolHTML = await singleModule.GetPage('http://localhost:8000/');
+    const schoolHTML = await singleModule.GetPage(url);
     const $ = cheerio.load(schoolHTML); // 載入 body
     const initialCourseInfo = (val, element) => $($(element).children('td')[val]).text().replace(regexParse, '');
 
@@ -128,7 +162,7 @@ const getCourse = async (matricKey = '日間部', year = '109', semester = 2) =>
         ta: parseLinks($, $($(element).children('td')[18]).children('a')),
         language: $($(element).children('td')[19]).text().replace(regexParse, ''),
         notes,
-        courseDescriptionLink: $($(element).children('td')[1]).children('a').attr('href'),
+        courseDescriptionLink: `https://aps.ntut.edu.tw/course/tw/${$($(element).children('td')[1]).children('a').attr('href')}`,
         syllabusLinks: parseSyllabusLinks($, $($(element).children('td')[20]).children('a')),
       };
     }).toArray();
@@ -151,8 +185,8 @@ const getCourse = async (matricKey = '日間部', year = '109', semester = 2) =>
   }
 };
 
-const main = () => new Promise((resovle) => {
-  resovle(getCourse());
+const main = (year, semester, department) => new Promise((resovle) => {
+  resovle(getCourse(department, year, semester));
 });
 
 export default main;

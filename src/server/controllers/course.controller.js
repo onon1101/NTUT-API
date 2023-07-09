@@ -3,7 +3,8 @@ import yearModule from '../modules/getSchoolSemester.module';
 import departmentModule from '../modules/getDepartment.module';
 
 const getCourse = (req, res, next) => {
-  courseModule()
+  const { year, semester, department } = req.params;
+  courseModule(year, semester, department)
     .then((response) => {
       res.json(response);
     })
