@@ -5,7 +5,6 @@
   "repository": "https://github.com/onon1101/NTUT-API.git",
   "author": "onon1101 <mingzhuguly@gmail.com>",
   "license": "MIT",
-  "type":"module",
   "devDependencies": {
     "babel-core": "^4.7.16",
     "babel-loader": "^9.1.2",
@@ -21,6 +20,7 @@
     "start": "nodemon dist/index.bundle.js"
   },
   "dependencies": {
+    "@babel/core": "^7.22.9",
     "axios": "^1.4.0",
     "axios-cookiejar-support": "^4.0.7",
     "axios-retry": "^3.5.1",
