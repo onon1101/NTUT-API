@@ -28,6 +28,8 @@ NTUT-API
 以下分為兩種安裝方式, 一種是使用docker, 另一種是直接安裝在本機上
 
 ```bash
+git clone http://github.com/onon1101/NTUT-API
+cd ./NTUT-API
 npm install
 npm run start
 ```
