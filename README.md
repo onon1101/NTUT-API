@@ -1,4 +1,4 @@
-# WARNING: this is a test version, please do not use it in your computer, it will release in 2023/08/01.
+
 
 ## Introduce
 這是一個以爬蟲為基礎的北科網頁API, 其主要由掃描後回傳結果至網頁上, 並且以json格式回傳
