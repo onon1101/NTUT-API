@@ -1,8 +1,7 @@
 {
   "name": "NTUT-API",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
-  "type":"module",
   "repository": "https://github.com/onon1101/NTUT-API.git",
   "author": "onon1101 <mingzhuguly@gmail.com>",
   "license": "MIT",
