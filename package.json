@@ -2,6 +2,7 @@
   "name": "NTUT-API",
   "version": "1.0.1",
   "main": "index.js",
+  "type": "module",
   "repository": "https://github.com/onon1101/NTUT-API.git",
   "author": "onon1101 <mingzhuguly@gmail.com>",
   "license": "MIT",
@@ -11,14 +12,13 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.4.0",
     "eslint": "^8.45.0",
-    "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
     "webpack-node-externals": "^3.0.0"
   },
   "scripts": {
     "build": "webpack -w",
     "build:prod": "webpack -p",
-    "start": "nodemon dist/index.bundle.js"
+    "start": "nodemon --es-module-specifier-resolution=node src/index.js"
   },
   "dependencies": {
     "@babel/core": "^7.22.9",
