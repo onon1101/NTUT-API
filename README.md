@@ -11,7 +11,6 @@
 git clone http://github.com/onon1101/NTUT-API
 cd ./NTUT-API
 npm install
-npm run build
 npm run start
 ```
 
